@@ -19,7 +19,7 @@ function App() {
     setDay(yesterday);
   }
 
-  function today() {
+  function dayToday() {
     setDay(new Date(new Date().setHours(0, 0, 0, 0)));
   }
   return (
@@ -29,7 +29,7 @@ function App() {
         date={day.toDateString()}
         dayFwd={dayFwd}
         dayBack={dayBack}
-        today={today}
+        today={dayToday}
       />
       <TodoList day={day.toISOString()} />
     </>

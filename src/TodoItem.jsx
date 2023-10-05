@@ -10,7 +10,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
-function TodoItem({ todo, remove, toggle }) {
+function TodoItem({ todo, remove, toggle, completed = false }) {
   const labelId = `checkbox-list-label-${todo.id}`;
 
   function removeTodo() {
@@ -28,7 +28,12 @@ function TodoItem({ todo, remove, toggle }) {
           {/* <IconButton aria-label="edit" color="primary">
             <EditTwoToneIcon />
           </IconButton> */}
-          <IconButton aria-label="delete" color="primary" onClick={removeTodo}>
+          <IconButton
+            aria-label="delete"
+            color="primary"
+            onClick={removeTodo}
+            disabled={completed}
+          >
             <DeleteForeverTwoToneIcon />
           </IconButton>
         </ButtonGroup>
@@ -39,11 +44,12 @@ function TodoItem({ todo, remove, toggle }) {
         <ListItemIcon>
           <Checkbox
             edge="start"
-            checked={todo.completed}
+            checked={todo.completed || completed}
             tabIndex={-1}
             disableRipple
             inputProps={{ "aria-labelledby": labelId }}
             onChange={toggleTodo}
+            disabled={completed}
           />
         </ListItemIcon>
 
